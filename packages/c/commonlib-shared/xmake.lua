@@ -4,7 +4,7 @@ package("commonlib-shared")
     set_license("GPLv3")
 
     add_urls("https://github.com/libxse/commonlib-shared.git")
-    -- add_versions("1.0.0", "")
+    add_versions("0.1.0", "9a20056954dd6d88af14b83de63d9424791e1a03")
 
     add_configs("rex_ini", { description = "enable ini settings support for REX", default = false, type = "boolean" })
     add_configs("rex_json", { description = "enable json settings support for REX", default = false, type = "boolean" })
