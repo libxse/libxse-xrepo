@@ -1,6 +1,6 @@
 package("commonlib-shared")
     set_homepage("https://github.com/libxse/commonlib-shared")
-    set_description("shared headers for libxse projects")
+    set_description("Shared headers for commonlib projects")
     set_license("GPLv3")
 
     add_urls("https://github.com/libxse/commonlib-shared.git")
@@ -15,7 +15,7 @@ package("commonlib-shared")
     add_deps("rsm-mmio")
     add_deps("spdlog", { configs = { header_only = false, wchar = true, std_format = true } })
 
-    add_syslinks("advapi32", "bcrypt", "d3d11", "d3dcompiler", "dbghelp", "dxgi", "ole32", "shell32", "user32", "version")
+    add_syslinks("advapi32", "bcrypt", "d3d11", "d3dcompiler", "dbghelp", "dxgi", "ole32", "shell32", "user32", "version", "ws2_32")
 
     on_load("windows|x64", function(package)
         if package:config("rex_ini") then
@@ -37,13 +37,12 @@ package("commonlib-shared")
     end)
 
     on_install("windows|x64", function(package)
-        local configs = {}
-        configs.rex_ini = package:config("rex_ini")
-        configs.rex_json = package:config("rex_json")
-        configs.rex_toml = package:config("rex_toml")
-        configs.xse_xbyak = package:config("xse_xbyak")
-
-        import("package.tools.xmake").install(package, configs)
+        import("package.tools.xmake").install(package, {
+            rex_ini = package:config("rex_ini"),
+            rex_json = package:config("rex_json"),
+            rex_toml = package:config("rex_toml"),
+            xse_xbyak = package:config("xse_xbyak")
+        })
     end)
 
     on_test("windows|x64", function(package)
