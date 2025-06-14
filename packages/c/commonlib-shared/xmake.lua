@@ -21,7 +21,7 @@ package("commonlib-shared")
         end
         if package:config("json") then
             package:add("defines", "COMMONLIB_OPTION_JSON=1")
-            package:add("deps", "nlohmann_json")
+            package:add("deps", "glaze")
         end
         if package:config("toml") then
             package:add("defines", "COMMONLIB_OPTION_TOML=1")
